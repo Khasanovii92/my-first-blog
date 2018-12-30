@@ -1,0 +1,27 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+    <form class="form-reg" action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <h2 class="form-reg__title">Вход</h2>
+        <input class="form-reg__control"
+               type="text"
+               placeholder="Логин"
+               name="{{ form.username.name }}"
+               value="{{ form.username.value | default_if_none:'' }}"
+               required>
+       {{ form.username.errors }}
+        <input class="form-reg__control"
+               type="password"
+               placeholder="Пароль"
+               name="{{ form.password.name }}"
+               required>
+        {{ form.password.errors }}
+        <button class="btn">Войти</button>
+    </form>
+{% endblock %}
